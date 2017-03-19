@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Provider } from 'react-redux';
 import { Router, Route, IndexRoute, } from 'react-router';
+import { ApolloProvider } from 'react-apollo';
 import {
     App,
     NoMatch,
@@ -8,6 +8,7 @@ import {
 import {
     HomePageContainer
 } from './../../containers'
+import { client } from './../../graphql/config'
 
 class Root extends Component {
     render() {
@@ -15,14 +16,14 @@ class Root extends Component {
         const { history, store } = this.props;
 
         return (
-            <Provider store={store}>
+            <ApolloProvider store={store} client={client}>
                 <Router history={history} onUpdate={() => window.scrollTo(0, 0)}>
                     <Route path="/" component={App}>
                         <IndexRoute component={HomePageContainer} />
                         <Route path="*" component={NoMatch} />
                     </Route>
                 </Router>
-            </Provider>
+            </ApolloProvider>
         );
     }
 }

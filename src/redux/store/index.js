@@ -5,12 +5,13 @@ import createLogger from 'redux-logger';
 
 import * as actionCreators from './../actions'
 import rootReducer from './../reducers/';
+import { client } from './../../graphql/config'
 
 const logger = createLogger({ collapsed: false });
 
 export default function configureStore(initialState) {
     const store = createStore(rootReducer, initialState, compose(
-        applyMiddleware(thunk, logger),
+        applyMiddleware(thunk, logger, client.middleware()),
         devToolsEnhancer({
             realtime: true, actionCreators
         })
