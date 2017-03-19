@@ -4,6 +4,7 @@ import { ApolloProvider } from 'react-apollo';
 import {
     App,
     NoMatch,
+    SignUpPage,
 } from './../../components'
 import {
     HomePageContainer
@@ -20,6 +21,7 @@ class Root extends Component {
                 <Router history={history} onUpdate={() => window.scrollTo(0, 0)}>
                     <Route path="/" component={App}>
                         <IndexRoute component={HomePageContainer} />
+                        <Route path="signup" component={SignUpPage} />
                         <Route path="*" component={NoMatch} />
                     </Route>
                 </Router>
